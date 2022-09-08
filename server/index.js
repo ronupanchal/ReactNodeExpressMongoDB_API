@@ -22,9 +22,12 @@ app.get('/', async(req,res)=>{
 });
 
 //get api by id
-app.get('/:id', async(req,res)=>{       
+app.get('/:id', async(req,res)=>{ 
+    //return res.send(req.params.id);
+    console.log(req.params.id); 
+    console.log("payload:"+req.body);     
     try{     
-        let q = await FacultyModel.findOne({ _id: id });
+        let q = await FacultyModel.findOne({ _id: req.params.id });
         return res.json(q);
        }catch(err){
          console.log(err);
@@ -33,7 +36,9 @@ app.get('/:id', async(req,res)=>{
 
 //post api
 app.post('/add_faculty', async(req,res)=>{
-    const faculty = new  FacultyModel({facultyName: "Nidhi",facultySalary:120000});
+    //const faculty = new  FacultyModel({facultyName: "Nidhi",facultySalary:120000});
+    console.log(req.body);
+    const faculty = new  FacultyModel({facultyName: req.body["name"],facultySalary:req.body["salary"]});
     try{        
         let rec = await faculty.save();
         return res.send(rec)

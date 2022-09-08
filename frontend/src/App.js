@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios'
 import Faculty from './faculty';
+import AddFaculty from './add_faculty';
 function App() {
 
   const [data, setData] =React.useState(null);
@@ -28,6 +29,7 @@ function App() {
                 </div>
               );
             })} */}
+            <AddFaculty/>
             <Faculty/>
             </center>
 
